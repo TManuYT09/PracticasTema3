@@ -44,8 +44,6 @@ public class Practica {
                     if (numeros1[i]>24){
                         System.out.println("ERROR. La potencia del "+(i+1)+"º samurai es mayor a 24");
                         comp=true;
-                    }else {
-                        comp=false;
                     }
                 }
             }
@@ -80,14 +78,12 @@ public class Practica {
                     if (numeros2[i]>24){
                         System.out.println("ERROR. La potencia del "+(i+1)+"º samurai es mayor a 24");
                         comp=true;
-                    }else {
-                        comp=false;
                     }
                 }
             }
         }while (comp);
         System.out.println("Equipo completado.");
-        
+
         System.out.println("¡Empieza la batalla!");
         aleatorio= random.nextInt(7);
         System.out.println("La batalla inicia con el Samurai "+(aleatorio+1));
