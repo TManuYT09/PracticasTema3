@@ -51,6 +51,7 @@ public class Practica {
             }
         }while (comp);
         System.out.println("Equipo completado.");
+
         System.out.println("Equipo 2");
         do {
             num = 0;
@@ -86,6 +87,7 @@ public class Practica {
             }
         }while (comp);
         System.out.println("Equipo completado.");
+        
         System.out.println("¡Empieza la batalla!");
         aleatorio= random.nextInt(7);
         System.out.println("La batalla inicia con el Samurai "+(aleatorio+1));
