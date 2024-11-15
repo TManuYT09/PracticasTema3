@@ -111,4 +111,101 @@ public class Practica {
             System.out.println("¡Equipo 1 GANA! Equipo 2 ha tenido "+bajas2);
         }
     }
+    public void practica2() {
+        Scanner entrada=new Scanner(System.in);
+        Random random=new Random();
+        boolean comp=true;
+        int boleto[]=new int[7];
+        do {
+            comp=true;
+            System.out.println("Introduce los datos de tu boleto:");
+            String numeros=entrada.nextLine();
+            numeros=numeros.trim();
+            comp=numeros.matches("\\d{1,2}-\\d{1,2}-\\d{1,2}-\\d{1,2}-\\d{1,2}-\\d{1,2}/\\d{1,2}");
+            if (!comp){
+                System.out.println("ERROR. El formato del boleto no es correcto.");
+            }else {
+                String boletot[]=numeros.split("[-/]");
+                for (int i=0;i<boleto.length;i++){
+                    boleto[i]= Integer.parseInt(boletot[i]);
+                    if (boleto[i]<=0||boleto[i]>49){
+                        comp=false;
+                        System.out.println("ERROR. Boleto no válido");
+                        break;
+                    }else if (i==6){
+                        if (boleto[i]<=0||boleto[i]>9){
+                            System.out.println("ERROR. Boleto no válido");
+                            comp=false;
+                        }
+                    }
+                }
+            }
+        }while (!comp);
+        System.out.println(Arrays.toString(boleto));
+        Arrays.sort(boleto);
+        int boleto_ganador[]=new int[6];
+        System.out.println("Ha salido:");
+        do {
+            comp=true;
+            for (int i=0;i<boleto_ganador.length;i++){
+                boleto_ganador[i]=random.nextInt(1,49);
+            }
+            Arrays.sort(boleto_ganador);
+            for (int i=0;i<boleto_ganador.length-1;i++){
+                if (boleto_ganador[i]==boleto_ganador[i+1]){
+                    comp=false;
+                    break;
+                }
+            }
+        }while (!comp);
+        System.out.println(Arrays.toString(boleto_ganador));
+        int complementario=0;
+        do {
+            comp=true;
+            complementario=random.nextInt(1,49);
+            if (Arrays.asList(boleto_ganador).contains(complementario)){
+                comp=false;
+            }
+        }while(!comp);
+        System.out.println("Complementario: "+complementario);
+        int reintegro=random.nextInt(0,9);
+        System.out.println("Reintegro: "+reintegro);
+        System.out.println(" ");
+        System.out.println("RESULTADOS:");
+        int aciertos=0;
+
+        for (int i=0;i<boleto_ganador.length;i++){
+            if (boleto_ganador[i]==boleto[i]){
+                aciertos++;
+            }
+        }
+        if (aciertos==1){
+            System.out.println(aciertos+" acierto.");
+        }else {
+            System.out.println(aciertos+" aciertos.");
+        }
+        switch (aciertos){
+            case 1:
+            case 2:
+                if (reintegro==boleto[6]){
+                    System.out.println("Reintegro.");
+                }
+                break;
+            case 3:System.out.println("5ª Categoría");break;
+            case 4:System.out.println("4ª Categoría");break;
+            case 5:
+                if (Arrays.asList(boleto).contains(complementario)){
+                    System.out.println("2ª Categoría");
+                }else {
+                    System.out.println("3ª Categoría");
+                }
+                break;
+            case 6:
+                if (reintegro==boleto[6]){
+                    System.out.println("1ª Categoría");
+                }
+                break;
+            default:System.out.println("No premiado");break;
+        }
+    }
 }
