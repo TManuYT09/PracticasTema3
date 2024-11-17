@@ -175,8 +175,10 @@ public class Practica {
         int aciertos=0;
 
         for (int i=0;i<boleto_ganador.length;i++){
-            if (boleto_ganador[i]==boleto[i]){
-                aciertos++;
+            for (int j=0;j<boleto.length;j++){
+                if (boleto_ganador[i]==boleto[j]){
+                    aciertos++;
+                }
             }
         }
         if (aciertos==1){
