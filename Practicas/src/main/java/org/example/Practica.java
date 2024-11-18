@@ -121,7 +121,7 @@ public class Practica {
             System.out.println("Introduce los datos de tu boleto:");
             String numeros=entrada.nextLine();
             numeros=numeros.trim();
-            comp=numeros.matches("\\d{1,2}-\\d{1,2}-\\d{1,2}-\\d{1,2}-\\d{1,2}-\\d{1,2}/\\d{1,2}");
+            comp=numeros.matches("\\d{1,2}-\\d{1,2}-\\d{1,2}-\\d{1,2}-\\d{1,2}-\\d{1,2}/\\d");
             if (!comp){
                 System.out.println("ERROR. El formato del boleto no es correcto.");
             }else {
