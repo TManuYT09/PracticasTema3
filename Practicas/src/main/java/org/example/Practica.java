@@ -142,7 +142,11 @@ public class Practica {
             }
         }while (!comp);
         System.out.println(Arrays.toString(boleto));
-        Arrays.sort(boleto);
+        int boleto_real[]=new int[6];
+        for (int i=0;i< boleto_real.length;i++){
+            boleto_real[i]=boleto[i];
+        }
+        int reintegro_real=boleto[6];
         int boleto_ganador[]=new int[6];
         System.out.println("Ha salido:");
         do {
@@ -175,8 +179,8 @@ public class Practica {
         int aciertos=0;
 
         for (int i=0;i<boleto_ganador.length;i++){
-            for (int j=0;j<boleto.length;j++){
-                if (boleto_ganador[i]==boleto[j]){
+            for (int j=0;j<boleto_real.length;j++){
+                if (boleto_ganador[i]==boleto_real[j]){
                     aciertos++;
                 }
             }
@@ -187,12 +191,6 @@ public class Practica {
             System.out.println(aciertos+" aciertos.");
         }
         switch (aciertos){
-            case 1:
-            case 2:
-                if (reintegro==boleto[6]){
-                    System.out.println("Reintegro.");
-                }
-                break;
             case 3:System.out.println("5ª Categoría");break;
             case 4:System.out.println("4ª Categoría");break;
             case 5:
@@ -208,6 +206,9 @@ public class Practica {
                 }
                 break;
             default:System.out.println("No premiado");break;
+        }
+        if (reintegro==reintegro_real){
+            System.out.println("Reintegro.");
         }
     }
 }
