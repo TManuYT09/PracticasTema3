@@ -164,13 +164,13 @@ public class Practica {
         }while (!comp);
         System.out.println(Arrays.toString(boleto_ganador));
         int complementario=0;
-        do {
-            comp=true;
-            complementario=random.nextInt(1,49);
-            if (Arrays.asList(boleto_ganador).contains(complementario)){
-                comp=false;
-            }
-        }while(!comp);
+//        do {
+//            comp=true;
+//            complementario=random.nextInt(1,49);
+//            if (Arrays.asList(boleto_ganador).contains(complementario)){
+//                comp=false;
+//            }
+//        }while(!comp);
         System.out.println("Complementario: "+complementario);
         int reintegro=random.nextInt(0,9);
         System.out.println("Reintegro: "+reintegro);
@@ -194,11 +194,11 @@ public class Practica {
             case 3:System.out.println("5ª Categoría");break;
             case 4:System.out.println("4ª Categoría");break;
             case 5:
-                if (Arrays.asList(boleto).contains(complementario)){
-                    System.out.println("2ª Categoría");
-                }else {
-                    System.out.println("3ª Categoría");
-                }
+//                if (Arrays.asList(boleto).contains(complementario)){
+//                    System.out.println("2ª Categoría");
+//                }else {
+//                    System.out.println("3ª Categoría");
+//                }
                 break;
             case 6:
                 if (reintegro==boleto[6]){
@@ -209,6 +209,65 @@ public class Practica {
         }
         if (reintegro==reintegro_real){
             System.out.println("Reintegro.");
+        }
+    }
+    public void practica3(){
+        Scanner entrada=new Scanner(System.in);
+        System.out.println("Introduce el número de filas:");
+        int filas=entrada.nextInt();
+        System.out.println("Introduce el número de columnas:");
+        int columnas=entrada.nextInt();
+        String matriz[][]= new String[filas][columnas];
+        boolean comp=false;
+        String letras;
+        int numi=-1;
+        int numj=-1;
+
+        for (int i = 0; i < matriz.length; i++) {
+            System.out.println("Introduce las letras de la fila "+(i+1));
+            letras=entrada.next();
+            if (letras.matches("[a-zA-Z]+")){
+                String vector[]=letras.split("");
+                for (int j = 0; j < matriz[0].length; j++) {
+                    matriz[i][j]=vector[j];
+                }
+            }else {
+                System.out.println("ERROR. Introduce datos válidos: "+columnas+" letras.");
+                comp=true;
+                break;
+            }
+        }
+        if (!comp){
+            for (int i = 0; i < matriz.length; i++) {
+                for (int j = 0; j < matriz[i].length; j++) {
+                    System.out.print(matriz[i][j]+" ");
+                }
+                System.out.print("\n");
+            }
+            System.out.println("Introduce la palabra a buscar:");
+            do {
+                letras=entrada.next();
+                if (letras.matches("[a-zA-Z]+")){
+                    comp=false;
+                }else {
+                    System.out.println("ERROR. Formato no valido");
+                    comp=true;
+                }
+            }while(comp);
+
+            i:
+            for (int i = 0; i < matriz.length; i++) {
+                j:
+                for (int j = 0; j < matriz[i].length; j++) {
+                    if (matriz[i][j].equals(letras.substring(0,1))){
+                        numi=i;
+                        numj=j;
+                        break i;
+                    }
+                }
+            }
+
+            for (int i=)
         }
     }
 }
