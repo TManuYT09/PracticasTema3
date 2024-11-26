@@ -220,8 +220,8 @@ public class Practica {
         String matriz[][]= new String[filas][columnas];
         boolean comp=false;
         String letras;
-        int numi=-1;
-        int numj=-1;
+        int numi=0;
+        int numj=0;
 
         for (int i = 0; i < matriz.length; i++) {
             System.out.println("Introduce las letras de la fila "+(i+1));
@@ -244,30 +244,53 @@ public class Practica {
                 }
                 System.out.print("\n");
             }
-            System.out.println("Introduce la palabra a buscar:");
             do {
-                letras=entrada.next();
-                if (letras.matches("[a-zA-Z]+")){
-                    comp=false;
-                }else {
-                    System.out.println("ERROR. Formato no valido");
-                    comp=true;
-                }
-            }while(comp);
+                System.out.println("Introduce la palabra a buscar:");
+                do {
+                    letras=entrada.next();
+                    if (letras.matches("[a-zA-Z]+")){
+                        comp=false;
+                    }else {
+                        System.out.println("ERROR. Formato no valido");
+                        comp=true;
+                    }
+                }while(comp);
 
-            i:
-            for (int i = 0; i < matriz.length; i++) {
-                j:
-                for (int j = 0; j < matriz[i].length; j++) {
-                    if (matriz[i][j].equals(letras.substring(0,1))){
-                        numi=i;
-                        numj=j;
-                        break i;
+                i:
+                for (int i = numi; i < matriz.length; i++) {
+                    j:
+                    for (int j = numj; j < matriz[i].length; j++) {
+                        if (matriz[i][j].equals(letras.substring(0,1))){
+                            numi=i;
+                            numj=j;
+                            break i;
+                        }
                     }
                 }
-            }
 
-            for (int i=)
+                for (int i=0;i<letras.length();i++){
+                    if (matriz[numi][i].equals(letras.substring(i,i+1))){
+                        comp=false;
+                        continue;
+                    }else {
+                        comp=true;
+                        break;
+                    }
+                }
+
+                if (comp){
+                    for (int i=0;i<letras.length();i++){
+                        if (matriz[i][numj].equals(letras.substring(i,i+1))){
+                            comp=false;
+                            continue;
+                        }else {
+                            comp=true;
+                            break;
+                        }
+                    }
+                }
+            }while (comp);
+            System.out.println("Encontrada!!! En la posición "+numi+" "+numj);
         }
     }
 }
