@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -213,12 +214,34 @@ public class Practica {
     }
     public void practica3(){
         Scanner entrada=new Scanner(System.in);
-        System.out.println("Introduce el número de filas:");
-        int filas=entrada.nextInt();
-        System.out.println("Introduce el número de columnas:");
-        int columnas=entrada.nextInt();
-        String matriz[][]= new String[filas][columnas];
+        int filas=0;
+        int columnas=0;
         boolean comp=false;
+        do {
+            try {
+                System.out.println("Introduce el número de filas:");
+                filas=entrada.nextInt();
+                comp=false;
+            }catch (InputMismatchException err){
+                System.out.println("ERROR. Valor introducido no valio");
+                entrada.nextLine();
+                comp=true;
+            }
+        }while (comp);
+
+        do {
+            try {
+                System.out.println("Introduce el número de columnas:");
+                columnas=entrada.nextInt();
+                comp=false;
+            }catch (InputMismatchException err){
+                System.out.println("ERROR. Valor introducido no valio");
+                entrada.nextLine();
+                comp=true;
+            }
+        }while (comp);
+
+        String matriz[][]= new String[filas][columnas];
         String letras;
         int numi=0;
         int numj=0;
